@@ -1,0 +1,16 @@
+// React Intersection Observer (allows scrolling animations)
+import { useInView } from "react-intersection-observer";
+
+// Framer Motion
+import { useAnimation } from "framer-motion";
+
+export const useScroll = () => {
+  const controls = useAnimation();
+  const [element, view] = useInView({ threshold: 0.25 });
+  if (view) {
+    controls.start("show");
+  } else {
+    controls.start("hidden");
+  }
+  return [element, controls];
+};
